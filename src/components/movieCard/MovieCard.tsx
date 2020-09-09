@@ -1,17 +1,12 @@
 import React, { FC } from 'react';
-import styled from 'styled-components';
-
-const ImageContainer = styled.a`
-  display: block;
-  width: 320px;
-  height: 450px;
-`;
-
-const Image = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`;
+import { ImageContainer } from './styles/ImageContainer';
+import { Image } from './styles/Image';
+import { ActionWrapper } from './styles/ActionWrapper';
+import { ActionButton } from './styles/ActionButton';
+import { Card } from './styles/Card';
+import { ActionList } from './styles/ActionList';
+import { ActionLink } from './styles/ActionLink';
+import { ActionCloseButton } from './styles/ActionCloseButton';
 
 type Props = {
   title: string;
@@ -22,10 +17,22 @@ type Props = {
 };
 
 export const MovieCard: FC<Props> = ({ title, image, genre, year, url }) => (
-  <article>
+  <Card>
     <ImageContainer href={url} target="_blank">
       <Image src={image} alt={title} />
     </ImageContainer>
+    <ActionButton />
+    <ActionWrapper>
+      <ActionList>
+        <li>
+          <ActionLink href="#">Edit</ActionLink>
+        </li>
+        <li>
+          <ActionLink href="#">Delete</ActionLink>
+        </li>
+      </ActionList>
+      <ActionCloseButton />
+    </ActionWrapper>
     <div>
       <div>
         <h2>{title}</h2>
@@ -33,5 +40,5 @@ export const MovieCard: FC<Props> = ({ title, image, genre, year, url }) => (
       </div>
       <span>{year}</span>
     </div>
-  </article>
+  </Card>
 );

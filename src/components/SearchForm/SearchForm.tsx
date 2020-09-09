@@ -1,21 +1,7 @@
 import React, { FC } from 'react';
-import styled from 'styled-components';
 import { CommonButton } from '../CommonButton/CommonButton';
-
-const Form = styled.form`
-  display: flex;
-  width: 100%;
-  margin-top: 40px;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  margin-right: 10px;
-  padding: 20px;
-  border: none;
-  border-radius: 4px;
-  background-color: rgba(0, 0, 0, 0.5);
-`;
+import { Input } from './styles/Input';
+import { Form } from './styles/Form';
 
 const stylesButton = {
   width: '250px',

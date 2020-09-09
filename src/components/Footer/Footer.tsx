@@ -1,13 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Logo } from '../Logo/Logo';
-
-const FooterWrapper = styled.footer`
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-  background-color: #424242;
-`;
+import { FooterWrapper } from './styles/FooterWrapper';
 
 export const Footer = () => (
   <FooterWrapper>

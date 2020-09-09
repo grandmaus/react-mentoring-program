@@ -1,12 +1,5 @@
 import React, { FC } from 'react';
-import styled from 'styled-components';
-
-const LogoLink = styled.a`
-  display: block;
-  width: 200px;
-  height: 30px;
-`;
-
+import { LogoLink } from './styles/LogoLink';
 
 type Props = {
   url: string;
