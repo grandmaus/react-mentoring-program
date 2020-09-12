@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import mainImage from "@public/image/mainImage.jpg";
 
-export const Wrapper = styled.header`
+type Props = {
+  isShowDetails: boolean;
+};
+
+export const Wrapper = styled.header<Props>`
   position: relative;
   margin-bottom: 10px;
   background-image: url(${mainImage});
@@ -15,7 +19,7 @@ export const Wrapper = styled.header`
     position: absolute;
     left: 0;
     top: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: ${props => props.isShowDetails ? `rgba(0, 0, 0, 0.9)` : `rgba(0, 0, 0, 0.5)`};
     backdrop-filter: blur(5px);
   }
 `;

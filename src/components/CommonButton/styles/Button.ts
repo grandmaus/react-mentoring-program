@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export type StyledProps = {
   width: string;
+  marginRight?: string;
   color: string;
   background: string;
   borderColor: string;
@@ -10,7 +11,8 @@ export type StyledProps = {
 export const Button = styled.button<StyledProps>`
   display: block;
   width: ${props => props.width};
-  padding: 10px;
+  margin-right: ${props => props.marginRight};
+  padding: 15px;
   box-sizing: border-box;
   text-align: center;
   font-size: 14px;
