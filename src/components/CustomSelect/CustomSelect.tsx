@@ -1,10 +1,11 @@
-import React, { FC, useState } from 'react';
+import React, { FC, memo } from 'react';
 import { ToggleList } from './styles/ToggleList';
 import { Label } from './styles/Label';
 import { OptionsList } from './styles/OptionsList';
 import { OptionItem } from './styles/OptionItem';
 import { SelectContainer } from './styles/SelectContainer';
-import {CheckboxLabel} from "./styles/CheckboxLabel";
+import { CheckboxLabel } from './styles/CheckboxLabel';
+import { useVisibility } from '../../hooks/useVisibility.hooks';
 
 type Props = {
   label: string;
@@ -12,15 +13,15 @@ type Props = {
   options: ReadonlyArray<string>;
 };
 
-export const CustomSelect: FC<Props> = ({ label, placeholder, options }) => {
-  const [visibility, setVisibility] = useState<boolean>(false);
-
-  const toggleVisibility = () => setVisibility(!visibility);
+const CustomSelect: FC<Props> = ({ label, placeholder, options }) => {
+  const { visibility, handleToggleVisibility } = useVisibility();
 
   return (
     <SelectContainer>
       <Label>{label}</Label>
-      <ToggleList type="button" onClick={toggleVisibility}>{placeholder}</ToggleList>
+      <ToggleList type="button" onClick={handleToggleVisibility}>
+        {placeholder}
+      </ToggleList>
       {visibility && (
         <OptionsList>
           {options.map(item => (
@@ -34,3 +35,5 @@ export const CustomSelect: FC<Props> = ({ label, placeholder, options }) => {
     </SelectContainer>
   );
 };
+
+export default memo(CustomSelect);

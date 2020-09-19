@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { FormModal } from '../FormModal/FormModal';
-import { CommonInput } from '../CommonInput/CommonInput';
+import CommonInput from '../CommonInput/CommonInput';
 import { ButtonsWrapper } from '../Modal/styles/ButtonsWrapper';
-import { CommonButton } from '../CommonButton/CommonButton';
-import { CustomSelect } from '../CustomSelect/CustomSelect';
+import CommonButton from '../CommonButton/CommonButton';
+import CustomSelect from '../CustomSelect/CustomSelect';
 
 const stylesResetButton = {
   width: '200px',

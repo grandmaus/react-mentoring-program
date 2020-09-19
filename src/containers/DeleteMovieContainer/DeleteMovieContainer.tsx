@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { DeleteMovie } from '../../components/DeleteMovie/DeleteMovie';
+import { useVisibility } from '../../hooks/useVisibility.hooks';
 
 export const DeleteMovieContainer = () => {
-  const [visibility, setVisibility] = useState<boolean>(true);
+  const { visibility, handleToggleVisibility } = useVisibility();
 
-  const closeHandler = () => setVisibility(!visibility);
-
-  return <DeleteMovie visibility={visibility} closeHandler={closeHandler} />;
+  return <DeleteMovie visibility={visibility} closeHandler={handleToggleVisibility} />;
 };

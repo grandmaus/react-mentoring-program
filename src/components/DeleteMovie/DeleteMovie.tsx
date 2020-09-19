@@ -1,19 +1,7 @@
-import React, { FC } from 'react';
-import { FormModal } from '../FormModal/FormModal';
-import { CommonInput } from '../CommonInput/CommonInput';
-import { ButtonsWrapper } from '../Modal/styles/ButtonsWrapper';
-import { CommonButton } from '../CommonButton/CommonButton';
-import { CustomSelect } from '../CustomSelect/CustomSelect';
-import { Modal } from '../Modal/Modal';
-import { Form } from '../FormModal/styles/Form';
-
-const stylesResetButton = {
-  width: '200px',
-  marginRight: '20px',
-  color: '#f65251',
-  background: 'transparent',
-  borderColor: '#f65251'
-};
+import React, {FC} from 'react';
+import {ButtonsWrapper} from '../Modal/styles/ButtonsWrapper';
+import CommonButton from '../CommonButton/CommonButton';
+import {Modal} from '../Modal/Modal';
 
 const stylesButton = {
   width: '200px',

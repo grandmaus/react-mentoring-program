@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-export const DirectionText = styled.button`
-  margin: 0;
+export const Select = styled.select`
+  width: 157px;
   font-size: 18px;
   text-transform: uppercase;
   color: #ffffff;
   border: none;
-  background-color: transparent;
+  background-color: #232323;
 `;

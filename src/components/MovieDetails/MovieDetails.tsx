@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { Card } from './styles/Card';
 import { ImageContainer } from './styles/ImageContainer';
 import { Image } from './styles/Image';
@@ -13,7 +13,7 @@ type Props = {
   tagline: string;
 };
 
-export const MovieDetails: FC<Props> = ({ title, image, year, overview, rating, runtime, tagline }) => {
+const MovieDetails: FC<Props> = ({ title, image, year, overview, rating, runtime, tagline }) => {
   return (
     <Card>
       <ImageContainer>
@@ -34,3 +34,5 @@ export const MovieDetails: FC<Props> = ({ title, image, year, overview, rating, 
     </Card>
   );
 };
+
+export default memo(MovieDetails);

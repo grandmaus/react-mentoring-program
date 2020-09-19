@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 import { Logo } from '../Logo/Logo';
-import { CommonButton } from '../CommonButton/CommonButton';
+import CommonButton from '../CommonButton/CommonButton';
 import { SearchForm } from '../SearchForm/SearchForm';
 import { Wrapper } from './styles/Wrapper';
 import { Container } from './styles/Container';
 import { Banner } from './styles/Banner';
 import { Title } from './styles/Title';
 import { Row } from './styles/Row';
-import { MovieDetails } from '../MovieDetails/MovieDetails';
+import MovieDetails from '../MovieDetails/MovieDetails';
 import { SearchButton } from './styles/SearchButton';
 import movies from '../movies';
 

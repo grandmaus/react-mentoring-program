@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FormEdit } from '../../components/FormEdit/FormEdit';
+import { useVisibility } from '../../hooks/useVisibility.hooks';
 
 export const FormEditContainer = () => {
-  const [visibility, setVisibility] = useState<boolean>(true);
+  const { visibility, handleToggleVisibility } = useVisibility();
 
-  const closeHandler = () => setVisibility(!visibility);
-
-  return <FormEdit visibility={visibility} closeHandler={closeHandler} />;
+  return <FormEdit visibility={visibility} closeHandler={handleToggleVisibility} />;
 };

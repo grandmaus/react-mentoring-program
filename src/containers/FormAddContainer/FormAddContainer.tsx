@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FormAdd } from '../../components/FormAdd/FormAdd';
+import { useVisibility } from '../../hooks/useVisibility.hooks';
 
 export const FormAddContainer = () => {
-  const [visibility, setVisibility] = useState<boolean>(true);
+  const { visibility, handleToggleVisibility } = useVisibility();
 
-  const closeHandler = () => setVisibility(!visibility);
-
-  return <FormAdd visibility={visibility} closeHandler={closeHandler} />;
+  return <FormAdd visibility={visibility} closeHandler={handleToggleVisibility} />;
 };
