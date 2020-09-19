@@ -1,13 +1,16 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { Button, StyledProps } from './styles/Button';
 
 type Props = {
+  type?: 'button' | 'submit' | 'reset';
   text: string;
   styles: StyledProps;
 };
 
-export const CommonButton: FC<Props> = ({ text, styles: { width, background, borderColor, color } }) => (
-  <Button width={width} background={background} borderColor={borderColor} color={color}>
+const CommonButton: FC<Props> = ({ text, type = 'submit', styles: { width, marginRight, background, borderColor, color } }) => (
+  <Button type={type} width={width} marginRight={marginRight} background={background} borderColor={borderColor} color={color}>
     {text}
   </Button>
 );
+
+export default memo(CommonButton);

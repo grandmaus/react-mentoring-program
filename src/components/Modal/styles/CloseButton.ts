@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-export const ActionCloseButton = styled.button`
+export const CloseButton = styled.button`
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 20px;
+  right: 20px;
   display: block;
-  width: 20px;
-  height: 20px;
-  font-size: 32px;
+  width: 25px;
+  height: 25px;
+  font-size: 48px;
   line-height: 1;
   background-color: transparent;
   border: none;

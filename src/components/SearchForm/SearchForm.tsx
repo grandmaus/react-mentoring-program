@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { CommonButton } from '../CommonButton/CommonButton';
+import CommonButton from '../CommonButton/CommonButton';
 import { Input } from './styles/Input';
 import { Form } from './styles/Form';
 
