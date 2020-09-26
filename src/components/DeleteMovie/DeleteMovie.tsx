@@ -13,14 +13,15 @@ const stylesButton = {
 type Props = {
   visibility: boolean;
   closeHandler: () => void;
+  onConfirmClick: (e: React.SyntheticEvent) => void;
 };
 
-export const DeleteMovie: FC<Props> = ({ visibility = true, closeHandler }) => (
+export const DeleteMovie: FC<Props> = ({ visibility = true, closeHandler, onConfirmClick }) => (
   <Modal visibility={visibility} title="Delete movie" closeHandler={closeHandler}>
     <>
       <p>Are you sure you want to delete this movie?</p>
       <ButtonsWrapper>
-        <CommonButton text="Confirm" styles={stylesButton} />
+        <CommonButton text="Confirm" styles={stylesButton} onButtonClick={onConfirmClick} />
       </ButtonsWrapper>
     </>
   </Modal>

@@ -1,7 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const LogoLink = styled.a`
-  display: block;
-  width: 200px;
-  height: 30px;
+  display: inline-block;
+  font-size: 25px;
+  color: #f65261;
+  text-decoration: none;
+
+  span {
+    font-weight: 700;
+  }
 `;

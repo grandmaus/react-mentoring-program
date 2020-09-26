@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { DeleteMovie } from '../../components/DeleteMovie/DeleteMovie';
-import { useVisibility } from '../../hooks/useVisibility.hooks';
 
-export const DeleteMovieContainer = () => {
-  const { visibility, handleToggleVisibility } = useVisibility();
+type Props = {
+  visibility: boolean;
+  handleToggleVisibility: () => void;
+  onConfirmClick: (e: React.SyntheticEvent) => void;
+};
 
-  return <DeleteMovie visibility={visibility} closeHandler={handleToggleVisibility} />;
+export const DeleteMovieContainer: FC<Props> = ({ visibility, handleToggleVisibility, onConfirmClick }) => {
+  return <DeleteMovie visibility={visibility} closeHandler={handleToggleVisibility} onConfirmClick={onConfirmClick} />;
 };

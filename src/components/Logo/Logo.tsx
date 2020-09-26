@@ -3,11 +3,10 @@ import { LogoLink } from './styles/LogoLink';
 
 type Props = {
   url: string;
-  alt: string;
 };
 
-export const Logo: FC<Props> = ({ url, alt }) => (
+export const Logo: FC<Props> = ({ url }) => (
   <LogoLink href={url}>
-    <img src="https://via.placeholder.com/200x30" alt={alt} />
+    <span>netflix</span>roulette
   </LogoLink>
 );

@@ -4,6 +4,6 @@ import { FooterWrapper } from './styles/FooterWrapper';
 
 export const Footer = () => (
   <FooterWrapper>
-    <Logo url="/" alt="Netflix Roulette" />
+    <Logo url="/" />
   </FooterWrapper>
 );

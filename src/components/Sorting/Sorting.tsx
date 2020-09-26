@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { SortingList } from '../SortingList/SortingList';
 import { DirectionTitle } from './styles/DirectionTitle';
 import { Select } from './styles/Select';
@@ -7,19 +7,25 @@ import { Direction } from './styles/Direction';
 import { Result } from './styles/Result';
 import { SortingWrapper } from './styles/SortingWrapper';
 
-export const Sorting = () => (
+type Props = {
+  amount: number;
+  onFilterClick: (e: React.SyntheticEvent) => void;
+  onSortingChange: (e: React.SyntheticEvent) => void;
+};
+
+export const Sorting: FC<Props> = ({ amount, onFilterClick, onSortingChange }) => (
   <SortingWrapper>
     <ListWrapper>
-      <SortingList />
+      <SortingList onFilterClick={onFilterClick} />
       <Direction>
         <DirectionTitle>Sort by</DirectionTitle>
-        <Select>
-          <option value="Release date">Release date</option>
-          <option value="Genre">Genre</option>
-          <option value="Rating">Rating</option>
+        <Select onChange={onSortingChange}>
+          <option value="releaseDate">Release date</option>
+          <option value="genre">Genre</option>
+          <option value="rating">Rating</option>
         </Select>
       </Direction>
     </ListWrapper>
-    <Result>39 movies found</Result>
+    <Result>{amount} movies found</Result>
   </SortingWrapper>
 );

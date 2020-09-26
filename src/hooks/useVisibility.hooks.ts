@@ -7,11 +7,16 @@ export function useVisibility(initialState: boolean = false) {
     setVisibility(!visibility);
   }, [visibility]);
 
+  const addVisibility = useCallback(() => {
+    setVisibility(true);
+  }, [visibility]);
+
   return useMemo(
     () => ({
       handleToggleVisibility,
+      addVisibility,
       visibility
     }),
-    [handleToggleVisibility, visibility]
+    [handleToggleVisibility, addVisibility, visibility]
   );
 }
