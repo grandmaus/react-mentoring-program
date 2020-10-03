@@ -1,24 +1,30 @@
-import React from 'react';
+import React, { FC, memo } from 'react';
 import { Button } from './styles/Button';
 import { Item } from './styles/Item';
 import { List } from './styles/List';
 
-export const SortingList = () => (
-  <List>
+type Props = {
+  onFilterClick: (e: React.SyntheticEvent) => void;
+};
+
+const SortingList: FC<Props> = ({ onFilterClick }) => (
+  <List onClick={onFilterClick}>
     <Item>
       <Button>All</Button>
     </Item>
     <Item>
-      <Button>Documentary</Button>
+      <Button>Drama</Button>
     </Item>
     <Item>
-      <Button>Comedy</Button>
+      <Button>Romance</Button>
     </Item>
     <Item>
-      <Button>Horror</Button>
+      <Button>Fantasy</Button>
     </Item>
     <Item>
-      <Button>Crime</Button>
+      <Button>Adventure</Button>
     </Item>
   </List>
 );
+
+export default memo(SortingList);

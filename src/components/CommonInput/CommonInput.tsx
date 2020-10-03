@@ -1,6 +1,6 @@
 import React, { FC, memo } from 'react';
-import {Input} from "./styles/Input";
-import {Label} from "./styles/Label";
+import { Input } from "./styles/Input";
+import { Label } from "./styles/Label";
 
 type Props = {
   type: string;
@@ -8,7 +8,7 @@ type Props = {
   name: string;
   placeholder?: string;
   disabled?: boolean;
-  value?: string;
+  value?: string | number;
 };
 
 const CommonInput: FC<Props> = ({ type, label, name, placeholder, disabled, value }) => (

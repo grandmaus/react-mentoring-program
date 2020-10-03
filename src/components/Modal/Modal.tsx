@@ -1,8 +1,8 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, memo } from 'react';
 import { Container } from './styles/Container';
 import { Overlay } from './styles/Overlay';
 import { CloseButton } from './styles/CloseButton';
-import {Title} from "./styles/Title";
+import { Title } from "./styles/Title";
 
 type Props = {
   children: ReactElement;
@@ -11,7 +11,7 @@ type Props = {
   closeHandler: () => void;
 };
 
-export const Modal: FC<Props> = ({ children, visibility = false, title, closeHandler }) =>
+const Modal: FC<Props> = ({ children, visibility = false, title, closeHandler }) =>
   visibility && (
     <>
       <Container>
@@ -22,3 +22,5 @@ export const Modal: FC<Props> = ({ children, visibility = false, title, closeHan
       <Overlay />
     </>
   );
+
+export default memo(Modal);

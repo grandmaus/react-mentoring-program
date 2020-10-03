@@ -1,4 +1,6 @@
 import React, { FC, memo } from 'react';
+// eslint-disable-next-line import/extensions,import/no-unresolved
+import netflix from '@public/image/netflix.jpg';
 import { Card } from './styles/Card';
 import { ImageContainer } from './styles/ImageContainer';
 import { Image } from './styles/Image';
@@ -6,7 +8,7 @@ import { Image } from './styles/Image';
 type Props = {
   title?: string;
   image?: string;
-  year: string;
+  year: Date;
   overview?: string;
   rating: number;
   runtime: number;
@@ -17,7 +19,10 @@ const MovieDetails: FC<Props> = ({ title, image, year, overview, rating, runtime
   return (
     <Card>
       <ImageContainer>
-        <Image src={image} alt={tagline} />
+        <Image onError={e => {
+          e.target.src = netflix;
+          return e.target.src;
+        }} src={image} alt={tagline} />
       </ImageContainer>
       <div>
         <div>
@@ -26,7 +31,7 @@ const MovieDetails: FC<Props> = ({ title, image, year, overview, rating, runtime
         </div>
         <p>{tagline}</p>
         <div>
-          <span>{year}</span>
+          <span>{year} </span>
           <span>{runtime} min</span>
         </div>
         <p>{overview}</p>

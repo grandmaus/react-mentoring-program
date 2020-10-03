@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+// eslint-disable-next-line import/extensions,import/no-unresolved
 import searchIcon from '@public/image/search.svg';
 
 export const SearchButton = styled.button`

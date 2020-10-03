@@ -1,4 +1,6 @@
 import React, { FC, memo } from 'react';
+// eslint-disable-next-line import/extensions,import/no-unresolved
+import netflix from '@public/image/netflix.jpg';
 import { ImageContainer } from './styles/ImageContainer';
 import { Image } from './styles/Image';
 import { ActionWrapper } from './styles/ActionWrapper';
@@ -8,33 +10,52 @@ import { ActionList } from './styles/ActionList';
 import { ActionLink } from './styles/ActionLink';
 import { ActionCloseButton } from './styles/ActionCloseButton';
 import { useVisibility } from '../../hooks/useVisibility.hooks';
+import { useErrorImage } from '../../hooks/useErrorImage.hooks';
 
 type Props = {
+  id: number;
   title: string;
   image: string;
   genre: string;
   year: string;
   url: string;
   showDetailsHandler: (e: React.SyntheticEvent) => void;
+  onDeleteClick: (e: React.SyntheticEvent) => void;
+  onEditClick: (e: React.SyntheticEvent) => void;
 };
 
-const MovieCard: FC<Props> = ({ title, image, genre, year, url, showDetailsHandler }) => {
+const MovieCard: FC<Props> = ({
+  id,
+  title,
+  image,
+  genre,
+  year,
+  url,
+  showDetailsHandler,
+  onDeleteClick,
+  onEditClick
+}) => {
   const { visibility, handleToggleVisibility } = useVisibility();
+  const { errorImage, handleErrorImage } = useErrorImage();
 
   return (
-    <Card>
+    <Card id={`${id}`}>
       <ImageContainer href={url} target="_blank" onClick={showDetailsHandler}>
-        <Image src={image} alt={title} />
+        <Image onError={() => handleErrorImage()} src={errorImage ? netflix : image} alt={title} />
       </ImageContainer>
       <ActionButton onClick={handleToggleVisibility} />
       {visibility && (
         <ActionWrapper>
           <ActionList>
             <li>
-              <ActionLink href="#">Edit</ActionLink>
+              <ActionLink onClick={onEditClick} href="#">
+                Edit
+              </ActionLink>
             </li>
             <li>
-              <ActionLink href="#">Delete</ActionLink>
+              <ActionLink onClick={onDeleteClick} href="#">
+                Delete
+              </ActionLink>
             </li>
           </ActionList>
           <ActionCloseButton onClick={handleToggleVisibility} />

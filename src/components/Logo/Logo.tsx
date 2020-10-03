@@ -1,13 +1,14 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { LogoLink } from './styles/LogoLink';
 
 type Props = {
   url: string;
-  alt: string;
 };
 
-export const Logo: FC<Props> = ({ url, alt }) => (
+const Logo: FC<Props> = ({ url }) => (
   <LogoLink href={url}>
-    <img src="https://via.placeholder.com/200x30" alt={alt} />
+    <span>netflix</span>roulette
   </LogoLink>
 );
+
+export default memo(Logo);

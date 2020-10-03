@@ -1,16 +1,19 @@
-import React, {FC, ReactElement, ReactNode} from 'react';
+import React, { FC, ReactNode, memo } from 'react';
 import { Form } from './styles/Form';
-import { Modal } from '../Modal/Modal';
+import Modal from '../Modal/Modal';
 
 type Props = {
   children: ReactNode;
   visibility: boolean;
   title: string;
   closeHandler: () => void;
+  onInputChange?: (e: React.SyntheticEvent) => void;
 };
 
-export const FormModal: FC<Props> = ({ children, visibility = false, title, closeHandler }) => (
+const FormModal: FC<Props> = ({ children, visibility = false, title, closeHandler, onInputChange }) => (
   <Modal visibility={visibility} title={title} closeHandler={closeHandler}>
-    <Form>{children}</Form>
+    <Form onChange={onInputChange}>{children}</Form>
   </Modal>
 );
+
+export default memo(FormModal);

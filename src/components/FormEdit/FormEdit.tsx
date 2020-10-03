@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { FormModal } from '../FormModal/FormModal';
+import React, { FC, useState, memo, useCallback } from 'react';
+import FormModal from '../FormModal/FormModal';
 import CommonInput from '../CommonInput/CommonInput';
 import { ButtonsWrapper } from '../Modal/styles/ButtonsWrapper';
 import CommonButton from '../CommonButton/CommonButton';
@@ -21,22 +21,33 @@ const stylesSubmitButton = {
 };
 
 type Props = {
+  id: number;
+  title: string;
+  date: string;
+  url: string;
+  genres: ReadonlyArray<string>;
+  overview: string;
+  runtime: number;
   visibility: boolean;
   closeHandler: () => void;
 };
 
-const options = ['Crime', 'Documentary', 'Horror', 'Comedy']
+const FormEdit: FC<Props> = ({ visibility, closeHandler, id, title, date, url, genres, overview, runtime }) => {
+  const [values, setValues] = useState({ id, title, date, url, genres, overview, runtime });
+  const handleInputChange = useCallback((e: React.SyntheticEvent) => {
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: value });
+  }, [values]);
 
-export const FormEdit: FC<Props> = ({ visibility, closeHandler }) => {
   return (
-    <FormModal visibility={visibility} title="Edit movie" closeHandler={closeHandler}>
-      <CommonInput type="text" label="Movie ID" name="id" value="MO32820TH" disabled />
-      <CommonInput type="text" label="Title" name="title" placeholder="Title here" />
-      <CommonInput type="date" label="Release date" name="date" placeholder="Select date" />
-      <CommonInput type="text" label="Movie URL" name="url" placeholder="Movie URL here" />
-      <CustomSelect label="Genre" placeholder="Select genre" options={options} />
-      <CommonInput type="text" label="Overview" name="overview" placeholder="Overview here" />
-      <CommonInput type="text" label="Runtime" name="runtime" placeholder="Runtime here" />
+    <FormModal visibility={visibility} title="Edit movie" closeHandler={closeHandler} onInputChange={handleInputChange}>
+      <CommonInput type="text" label="Movie ID" name="id" value={values.id} disabled />
+      <CommonInput type="text" label="Title" name="title" placeholder="Title here" value={values.title} />
+      <CommonInput type="date" label="Release date" name="date" placeholder="Select date" value={values.date} />
+      <CommonInput type="text" label="Movie URL" name="url" placeholder="Movie URL here" value={values.url} />
+      <CustomSelect label="Genre" placeholder="Select genre" options={values.genres} />
+      <CommonInput type="text" label="Overview" name="overview" placeholder="Overview here" value={values.overview} />
+      <CommonInput type="text" label="Runtime" name="runtime" placeholder="Runtime here" value={values.runtime} />
       <ButtonsWrapper>
         <CommonButton type="reset" text="Reset" styles={stylesResetButton} />
         <CommonButton text="Save" styles={stylesSubmitButton} />
@@ -44,3 +55,5 @@ export const FormEdit: FC<Props> = ({ visibility, closeHandler }) => {
     </FormModal>
   );
 };
+
+export default memo(FormEdit);
