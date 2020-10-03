@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo } from 'react';
 
-export function useVisibility(initialState: boolean = false) {
+export function useVisibility(initialState = false) {
   const [visibility, setVisibility] = useState<boolean>(initialState);
 
   const handleToggleVisibility = useCallback(() => {
@@ -9,7 +9,7 @@ export function useVisibility(initialState: boolean = false) {
 
   const addVisibility = useCallback(() => {
     setVisibility(true);
-  }, [visibility]);
+  }, []);
 
   return useMemo(
     () => ({

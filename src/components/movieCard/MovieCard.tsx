@@ -1,4 +1,6 @@
 import React, { FC, memo } from 'react';
+// eslint-disable-next-line import/extensions,import/no-unresolved
+import netflix from '@public/image/netflix.jpg';
 import { ImageContainer } from './styles/ImageContainer';
 import { Image } from './styles/Image';
 import { ActionWrapper } from './styles/ActionWrapper';
@@ -8,11 +10,10 @@ import { ActionList } from './styles/ActionList';
 import { ActionLink } from './styles/ActionLink';
 import { ActionCloseButton } from './styles/ActionCloseButton';
 import { useVisibility } from '../../hooks/useVisibility.hooks';
-import netflix from '@public/image/netflix.jpg';
 import { useErrorImage } from '../../hooks/useErrorImage.hooks';
 
 type Props = {
-  id: string;
+  id: number;
   title: string;
   image: string;
   genre: string;
@@ -38,7 +39,7 @@ const MovieCard: FC<Props> = ({
   const { errorImage, handleErrorImage } = useErrorImage();
 
   return (
-    <Card id={id}>
+    <Card id={`${id}`}>
       <ImageContainer href={url} target="_blank" onClick={showDetailsHandler}>
         <Image onError={() => handleErrorImage()} src={errorImage ? netflix : image} alt={title} />
       </ImageContainer>

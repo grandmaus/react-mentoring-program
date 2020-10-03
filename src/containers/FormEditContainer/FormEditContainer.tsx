@@ -1,19 +1,19 @@
-import React, { FC } from 'react';
-import { FormEdit } from '../../components/FormEdit/FormEdit';
+import React, { FC, memo } from 'react';
+import FormEdit from '../../components/FormEdit/FormEdit';
 
 type Props = {
-  id: string;
+  id: number;
   title: string;
   date: string;
   url: string;
   genres: ReadonlyArray<string>;
   overview: string;
-  runtime: string;
+  runtime: number;
   visibility: boolean;
   handleToggleVisibility: () => void;
 };
 
-export const FormEditContainer: FC<Props> = ({
+const FormEditContainer: FC<Props> = ({
   visibility,
   handleToggleVisibility,
   id,
@@ -38,3 +38,5 @@ export const FormEditContainer: FC<Props> = ({
     />
   );
 };
+
+export default memo(FormEditContainer);

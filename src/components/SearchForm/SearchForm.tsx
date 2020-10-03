@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import CommonButton from '../CommonButton/CommonButton';
 import { Input } from './styles/Input';
 import { Form } from './styles/Form';
@@ -17,9 +17,11 @@ type Props = {
   onButtonClick: (e: React.SyntheticEvent) => void;
 };
 
-export const SearchForm: FC<Props> = ({ action, method, onInputChange, onButtonClick }) => (
+const SearchForm: FC<Props> = ({ action, method, onInputChange, onButtonClick }) => (
   <Form action={action} method={method}>
     <Input onChange={onInputChange} type="search" name="search" placeholder="What do you want to watch?" />
     <CommonButton onButtonClick={onButtonClick} text="Search" styles={stylesButton} />
   </Form>
 );
+
+export default memo(SearchForm);

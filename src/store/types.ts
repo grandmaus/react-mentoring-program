@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 export type Movie = {
   id: number;
   title: string;
@@ -15,7 +16,7 @@ export type Movie = {
 
 export type State = {
   movies: ReadonlyArray<Movie>;
-  searchedMovies: Array<Movie>;
+  searchedMovies: ReadonlyArray<Movie>;
   genre: string;
   sort: string;
 };

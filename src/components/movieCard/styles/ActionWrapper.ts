@@ -5,4 +5,4 @@ export const ActionWrapper = styled.div`
   top: 10px;
   right: 10px;
   width: 200px;
-`
+`;

@@ -1,14 +1,14 @@
-import React, { FC, useCallback, useState } from 'react';
-import { deleteMovies, fetchMovies } from '../../store/actions/actions';
+import React, { FC, useCallback, useState, memo } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { deleteMovies } from '../../store/actions/actions';
 import MovieCard from '../../components/movieCard/MovieCard';
-import { DeleteMovieContainer } from '../DeleteMovieContainer/DeleteMovieContainer';
+import DeleteMovieContainer from '../DeleteMovieContainer/DeleteMovieContainer';
 import { useVisibility } from '../../hooks/useVisibility.hooks';
-import { FormEditContainer } from '../FormEditContainer/FormEditContainer';
+import FormEditContainer from '../FormEditContainer/FormEditContainer';
 
 type Props = {
-  id: string;
+  id: number;
   title: string;
   image: string;
   genre: string;
@@ -16,10 +16,9 @@ type Props = {
   url: string;
   genres: ReadonlyArray<string>;
   overview: string;
-  runtime: string;
+  runtime: number;
   showDetailsHandler: (e: React.SyntheticEvent) => void;
-  deleteMovie: any;
-  requestMovies: any;
+  deleteMovie: (id: number) => void;
 };
 
 const MovieCardContainer: FC<Props> = ({
@@ -31,7 +30,6 @@ const MovieCardContainer: FC<Props> = ({
   url,
   showDetailsHandler,
   deleteMovie,
-  requestMovies,
   genres,
   overview,
   runtime
@@ -40,25 +38,30 @@ const MovieCardContainer: FC<Props> = ({
   const [isDelete, setIsDelete] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
 
-  const onDeleteMovie = useCallback((e: React.SyntheticEvent) => {
-    e.preventDefault();
-    setIsDelete(!isDelete);
-    setIsEdit(false);
-    handleToggleVisibility();
-  }, []);
+  const onDeleteMovie = useCallback(
+    (e: React.SyntheticEvent) => {
+      e.preventDefault();
+      setIsDelete(!isDelete);
+      setIsEdit(false);
+      handleToggleVisibility();
+    },
+    [handleToggleVisibility, isDelete]
+  );
 
-  const onEditMovie = useCallback((e: React.SyntheticEvent) => {
-    e.preventDefault();
-    setIsEdit(!isEdit);
-    setIsDelete(false);
-    handleToggleVisibility();
-  }, []);
+  const onEditMovie = useCallback(
+    (e: React.SyntheticEvent) => {
+      e.preventDefault();
+      setIsEdit(!isEdit);
+      setIsDelete(false);
+      handleToggleVisibility();
+    },
+    [handleToggleVisibility, isEdit]
+  );
 
   const onConfirmDelete = useCallback(() => {
     deleteMovie(id);
-    setTimeout(() => requestMovies(), 1000);
     setIsDelete(false);
-  }, [id]);
+  }, [deleteMovie, id]);
 
   return (
     <>
@@ -97,13 +100,8 @@ const MovieCardContainer: FC<Props> = ({
   );
 };
 
-const mapStateToProps = (state: any) => ({
-  movies: state.netflix.movies
-});
-
 const matchDispatchToProps = (dispatch: any) => ({
-  deleteMovie: bindActionCreators(deleteMovies, dispatch),
-  requestMovies: bindActionCreators(fetchMovies, dispatch)
+  deleteMovie: bindActionCreators(deleteMovies, dispatch)
 });
 
-export default connect(mapStateToProps, matchDispatchToProps)(MovieCardContainer);
+export default connect(null, matchDispatchToProps)(memo(MovieCardContainer));

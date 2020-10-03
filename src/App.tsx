@@ -1,14 +1,14 @@
-import React, { useState, FC } from 'react';
+import React, { useState, FC, useCallback } from 'react';
+import { connect } from 'react-redux';
 import { GlobalStyle } from './commonStyles/style';
 import MovieCardList from './components/MovieCardList/MovieCardList';
-import { Header } from './components/Header/Header';
+import Header from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
 import { Main } from './commonStyles/Main';
-import { FormAddContainer } from './containers/FormAddContainer/FormAddContainer';
+import FormAddContainer from './containers/FormAddContainer/FormAddContainer';
 import { useVisibility } from './hooks/useVisibility.hooks';
 import SortingContainer from './containers/SortingContainer/SortingContainer';
 import { Movie } from './store/types';
-import { connect } from 'react-redux';
 
 type Props = {
   movies: ReadonlyArray<Movie>;
@@ -18,7 +18,7 @@ const App: FC<Props> = ({ movies }) => {
   const { visibility, addVisibility, handleToggleVisibility } = useVisibility();
   const [movie, setMovie] = useState<Movie>();
 
-  const showDetailsHandler = (e: React.SyntheticEvent) => {
+  const showDetailsHandler = useCallback((e: React.SyntheticEvent) => {
     e.preventDefault();
     const movieId = e.target.closest('article').id;
 
@@ -28,7 +28,7 @@ const App: FC<Props> = ({ movies }) => {
 
     setMovie(movieItem);
     addVisibility();
-  };
+  }, [movies, addVisibility]);
 
   return (
     <>

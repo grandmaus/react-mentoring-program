@@ -1,4 +1,9 @@
-import { FETCH_MOVIES, SET_FILTER_GENRE, SET_SEARCHED_MOVIES, SET_SORT_TYPE } from '../actions/constants';
+import {
+  FETCH_FILTERED_MOVIES,
+  FETCH_MOVIES,
+  FETCH_SORTED_MOVIES,
+  FETCH_SEARCHED_MOVIES
+} from '../actions/constants';
 import { State } from '../types';
 
 export const initialState: State = {
@@ -16,21 +21,23 @@ export const reducer = (state = initialState, action: any) => {
         movies: action.payload.data,
         searchedMovies: action.payload.data
       };
-    case SET_FILTER_GENRE:
+    case FETCH_SEARCHED_MOVIES:
       return {
         ...state,
-        genre: action.payload
+        movies: action.payload.data,
+        searchedMovies: action.payload.data
       };
-
-    case SET_SORT_TYPE:
+    case FETCH_SORTED_MOVIES:
       return {
         ...state,
-        sort: action.payload
+        movies: action.payload.data,
+        searchedMovies: action.payload.data
       };
-    case SET_SEARCHED_MOVIES:
+    case FETCH_FILTERED_MOVIES:
       return {
         ...state,
-        searchedMovies: action.payload
+        movies: action.payload.data,
+        searchedMovies: action.payload.data
       };
     default:
       return state;

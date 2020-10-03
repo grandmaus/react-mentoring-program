@@ -1,5 +1,5 @@
-import React, { FC, useState } from 'react';
-import { FormModal } from '../FormModal/FormModal';
+import React, { FC, useState, memo, useCallback } from 'react';
+import FormModal from '../FormModal/FormModal';
 import CommonInput from '../CommonInput/CommonInput';
 import { ButtonsWrapper } from '../Modal/styles/ButtonsWrapper';
 import CommonButton from '../CommonButton/CommonButton';
@@ -21,23 +21,23 @@ const stylesSubmitButton = {
 };
 
 type Props = {
-  id: string;
+  id: number;
   title: string;
   date: string;
   url: string;
   genres: ReadonlyArray<string>;
   overview: string;
-  runtime: string;
+  runtime: number;
   visibility: boolean;
   closeHandler: () => void;
 };
 
-export const FormEdit: FC<Props> = ({ visibility, closeHandler, id, title, date, url, genres, overview, runtime }) => {
+const FormEdit: FC<Props> = ({ visibility, closeHandler, id, title, date, url, genres, overview, runtime }) => {
   const [values, setValues] = useState({ id, title, date, url, genres, overview, runtime });
-  const handleInputChange = (e: React.SyntheticEvent) => {
+  const handleInputChange = useCallback((e: React.SyntheticEvent) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
-  };
+  }, [values]);
 
   return (
     <FormModal visibility={visibility} title="Edit movie" closeHandler={closeHandler} onInputChange={handleInputChange}>
@@ -55,3 +55,5 @@ export const FormEdit: FC<Props> = ({ visibility, closeHandler, id, title, date,
     </FormModal>
   );
 };
+
+export default memo(FormEdit);

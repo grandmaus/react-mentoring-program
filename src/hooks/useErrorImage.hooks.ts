@@ -1,6 +1,6 @@
 import { useCallback, useState, useMemo } from 'react';
 
-export function useErrorImage(initialState: boolean = false) {
+export function useErrorImage(initialState = false) {
   const [errorImage, setErrorImage] = useState<boolean>(initialState);
 
   const handleErrorImage = useCallback(() => {

@@ -1,39 +1,32 @@
-import { SearchForm } from '../../components/SearchForm/SearchForm';
-import React, { FC, useState } from 'react';
-import { setSearchedMovies } from '../../store/actions/actions';
+import React, { FC, useCallback, useState, memo } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Movie } from '../../store/types';
+import { fetchSearchedMovies as fetchSearchedMoviesAction, } from '../../store/actions/actions';
+import SearchForm from '../../components/SearchForm/SearchForm';
 
 type Props = {
   action: string;
   method: string;
-  movies: ReadonlyArray<Movie>;
-  setSearchedMovies: any;
+  fetchSearchedMovies: (text: string) => void;
 };
 
-const SearchFormContainer: FC<Props> = ({ action, method, movies, setSearchedMovies }) => {
+const SearchFormContainer: FC<Props> = ({ action, method, fetchSearchedMovies }) => {
   const [inputValue, setInputValue] = useState('');
 
-  const onInputChange = (e: React.SyntheticEvent) => {
+  const onInputChange = useCallback((e: React.SyntheticEvent) => {
     const { value } = e.target;
 
     setInputValue(value);
-  };
+  }, []);
 
-  const onButtonClick = (e: React.SyntheticEvent) => {
-    e.preventDefault();
+  const onButtonClick = useCallback(
+    (e: React.SyntheticEvent) => {
+      e.preventDefault();
 
-    const searchResult = movies.filter(item => {
-      if (!inputValue) {
-        return item;
-      }
-
-      return ~item.title.toLowerCase().indexOf(inputValue.toLowerCase());
-    });
-
-    setSearchedMovies(searchResult);
-  };
+      fetchSearchedMovies(inputValue);
+    },
+    [fetchSearchedMovies, inputValue]
+  );
 
   return <SearchForm action={action} method={method} onInputChange={onInputChange} onButtonClick={onButtonClick} />;
 };
@@ -43,7 +36,7 @@ const mapStateToProps = (state: any) => ({
 });
 
 const matchDispatchToProps = (dispatch: any) => ({
-  setSearchedMovies: bindActionCreators(setSearchedMovies, dispatch)
+  fetchSearchedMovies: bindActionCreators(fetchSearchedMoviesAction, dispatch)
 });
 
-export default connect(mapStateToProps, matchDispatchToProps)(SearchFormContainer);
+export default connect(mapStateToProps, matchDispatchToProps)(memo(SearchFormContainer));

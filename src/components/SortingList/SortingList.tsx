@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { Button } from './styles/Button';
 import { Item } from './styles/Item';
 import { List } from './styles/List';
@@ -7,7 +7,7 @@ type Props = {
   onFilterClick: (e: React.SyntheticEvent) => void;
 };
 
-export const SortingList: FC<Props> = ({ onFilterClick }) => (
+const SortingList: FC<Props> = ({ onFilterClick }) => (
   <List onClick={onFilterClick}>
     <Item>
       <Button>All</Button>
@@ -26,3 +26,5 @@ export const SortingList: FC<Props> = ({ onFilterClick }) => (
     </Item>
   </List>
 );
+
+export default memo(SortingList);

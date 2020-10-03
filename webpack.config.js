@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const config = {
-  entry: ['./src/index.tsx'],
+  entry: ['@babel/polyfill', './src/index.tsx'],
   output: {
     filename: '[name].bundle.js',
     chunkFilename: '[name].bundle.js',
@@ -11,9 +11,9 @@ const config = {
   },
   resolve: {
     modules: [path.resolve(__dirname, './src'), 'node_modules'],
-    extensions: [".tsx", '.js', '.ts'],
+    extensions: ['.tsx', '.js', '.ts'],
     alias: {
-      '@public': path.resolve(__dirname, './public'),
+      '@public': path.resolve(__dirname, './public')
     }
   },
   watch: true,
@@ -25,7 +25,7 @@ const config = {
   },
   optimization: {
     splitChunks: {
-      chunks: 'all',
+      chunks: 'all'
     }
   },
   plugins: [
@@ -39,9 +39,9 @@ const config = {
   module: {
     rules: [
       {
-        enforce: "pre",
+        enforce: 'pre',
         test: /\.js$/,
-        loader: "source-map-loader"
+        loader: 'source-map-loader'
       },
       {
         test: /\.(tsx|ts)?$/,
@@ -58,11 +58,11 @@ const config = {
             options: { name: 'img/[name].[ext]' }
           },
           'image-webpack-loader'
-        ],
+        ]
       }
     ]
   }
-}
+};
 
 module.exports = (env, argv) => {
   if (argv.mode === 'development') {

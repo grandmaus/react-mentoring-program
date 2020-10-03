@@ -1,4 +1,5 @@
 import styled from "styled-components";
+// eslint-disable-next-line import/extensions,import/no-unresolved
 import mainImage from "@public/image/mainImage.jpg";
 
 type Props = {

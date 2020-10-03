@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { FormModal } from '../FormModal/FormModal';
+import React, { FC, memo } from 'react';
+import FormModal from '../FormModal/FormModal';
 import CommonInput from '../CommonInput/CommonInput';
 import { ButtonsWrapper } from '../Modal/styles/ButtonsWrapper';
 import CommonButton from '../CommonButton/CommonButton';
@@ -25,9 +25,9 @@ type Props = {
   closeHandler: () => void;
 };
 
-const options = ['Crime', 'Documentary', 'Horror', 'Comedy']
+const options = ['Crime', 'Documentary', 'Horror', 'Comedy'];
 
-export const FormAdd: FC<Props> = ({ visibility, closeHandler }) => {
+const FormAdd: FC<Props> = ({ visibility, closeHandler }) => {
   return (
     <FormModal visibility={visibility} title="Add movie" closeHandler={closeHandler}>
       <CommonInput type="text" label="Title" name="title" placeholder="Title here" />
@@ -43,3 +43,5 @@ export const FormAdd: FC<Props> = ({ visibility, closeHandler }) => {
     </FormModal>
   );
 };
+
+export default memo(FormAdd);

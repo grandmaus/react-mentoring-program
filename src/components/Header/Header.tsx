@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { Logo } from '../Logo/Logo';
+import React, { FC, memo } from 'react';
+import Logo from '../Logo/Logo';
 import CommonButton from '../CommonButton/CommonButton';
 import { Wrapper } from './styles/Wrapper';
 import { Container } from './styles/Container';
@@ -25,7 +25,7 @@ type Props = {
   movie: Movie;
 };
 
-export const Header: FC<Props> = ({ title, isShowDetails, returnToSearch, movie }) => (
+const Header: FC<Props> = ({ title, isShowDetails, returnToSearch, movie }) => (
   <Wrapper isShowDetails={isShowDetails}>
     <Container>
       <Row>
@@ -57,3 +57,5 @@ export const Header: FC<Props> = ({ title, isShowDetails, returnToSearch, movie 
     </Container>
   </Wrapper>
 );
+
+export default memo(Header);

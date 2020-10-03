@@ -1,4 +1,9 @@
-import { DELETE_MOVIES, FETCH_MOVIES, SET_FILTER_GENRE, SET_SEARCHED_MOVIES, SET_SORT_TYPE } from './constants';
+import {
+  FETCH_FILTERED_MOVIES,
+  FETCH_MOVIES,
+  FETCH_SEARCHED_MOVIES,
+  FETCH_SORTED_MOVIES,
+} from './constants';
 import { ENDPOINT } from '../constants';
 import { Movie } from '../types';
 
@@ -7,44 +12,48 @@ export const requestMovies = (payload: ReadonlyArray<Movie>) => ({
   payload
 });
 
-export const fetchMovies = () => (dispatch: any) => {
-  return fetch(`${ENDPOINT}`)
-    .then(response => response.json())
-    .then(data => {
-      return dispatch(requestMovies(data));
-    });
-};
-
-export const deleteMovie = (id: string) => ({
-  type: DELETE_MOVIES,
-  id
+export const requestSortedMovies = (payload: ReadonlyArray<Movie>) => ({
+  type: FETCH_SORTED_MOVIES,
+  payload
 });
 
-export const deleteMovies = (id: string) => (dispatch: any) => {
-  return fetch(`${ENDPOINT}/${id}`, {
+export const requestFilteredMovies = (payload: ReadonlyArray<Movie>) => ({
+  type: FETCH_FILTERED_MOVIES,
+  payload
+});
+
+export const requestSearchedMovies = (payload: ReadonlyArray<Movie>) => ({
+  type: FETCH_SEARCHED_MOVIES,
+  payload
+});
+
+export const fetchMovies = () => async (dispatch: any) => {
+  const response = await fetch(`${ENDPOINT}?limit=15`);
+  const data = await response.json();
+  return dispatch(requestMovies(data));
+};
+
+export const fetchSortedMovies = (type: string) => async (dispatch: any) => {
+  const response = await fetch(`${ENDPOINT}?sortBy=${type}&sortOrder=desc&limit=15`);
+  const data = await response.json();
+  return dispatch(requestSortedMovies(data));
+};
+
+export const fetchFilteredMovies = (genre: string) => async (dispatch: any) => {
+  const response = await fetch(`${ENDPOINT}?filter=${genre}&sortOrder=desc&limit=15`);
+  const data = await response.json();
+  return dispatch(requestFilteredMovies(data));
+};
+
+export const fetchSearchedMovies = (title: string) => async (dispatch: any) => {
+  const response = await fetch(`${ENDPOINT}?search=${title}&searchBy=title&limit=15`);
+  const data = await response.json();
+  return dispatch(requestSearchedMovies(data));
+};
+
+export const deleteMovies = (id: number) => async (dispatch: any) => {
+  await fetch(`${ENDPOINT}/${id}`, {
     method: 'DELETE'
-  }).then(() => {
-    dispatch(deleteMovie(id));
   });
-};
-
-export const setFilterGenre = (genre: string) => {
-  return {
-    type: SET_FILTER_GENRE,
-    payload: genre
-  };
-};
-
-export const setSortType = (type: string) => {
-  return {
-    type: SET_SORT_TYPE,
-    payload: type
-  };
-};
-
-export const setSearchedMovies = (payload: ReadonlyArray<object>) => {
-  return {
-    type: SET_SEARCHED_MOVIES,
-    payload
-  };
+  return dispatch(fetchMovies());
 };

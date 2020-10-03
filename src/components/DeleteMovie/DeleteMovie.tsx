@@ -1,7 +1,7 @@
-import React, {FC} from 'react';
-import {ButtonsWrapper} from '../Modal/styles/ButtonsWrapper';
+import React, { FC, memo } from 'react';
+import { ButtonsWrapper } from '../Modal/styles/ButtonsWrapper';
 import CommonButton from '../CommonButton/CommonButton';
-import {Modal} from '../Modal/Modal';
+import Modal from '../Modal/Modal';
 
 const stylesButton = {
   width: '200px',
@@ -16,7 +16,7 @@ type Props = {
   onConfirmClick: (e: React.SyntheticEvent) => void;
 };
 
-export const DeleteMovie: FC<Props> = ({ visibility = true, closeHandler, onConfirmClick }) => (
+const DeleteMovie: FC<Props> = ({ visibility = true, closeHandler, onConfirmClick }) => (
   <Modal visibility={visibility} title="Delete movie" closeHandler={closeHandler}>
     <>
       <p>Are you sure you want to delete this movie?</p>
@@ -26,3 +26,5 @@ export const DeleteMovie: FC<Props> = ({ visibility = true, closeHandler, onConf
     </>
   </Modal>
 );
+
+export default memo(DeleteMovie);

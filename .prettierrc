@@ -1,8 +1,13 @@
 {
-	"singleQuote": true,
-	"trailingComma": "none",
-	"useTabs": false,
-	"tabWidth": 2,
-	"printWidth": 120,
-	"htmlWhitespaceSensitivity": "ignore"
+  "arrowParens": "always",
+  "singleQuote": true,
+  "trailingComma": "all",
+  "printWidth": 120,
+  "tabWidth": 2,
+  "overrides": [
+    {
+      "files":["*.ts", "*.js", "*.tsx", "*.jsx"],
+      "options": { "trailingComma": "all" }
+    }
+  ]
 }
