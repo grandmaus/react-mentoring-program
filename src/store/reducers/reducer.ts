@@ -1,43 +1,59 @@
 import {
-  FETCH_FILTERED_MOVIES,
+  ADD_MOVIE,
+  EDIT_MOVIE,
   FETCH_MOVIES,
-  FETCH_SORTED_MOVIES,
-  FETCH_SEARCHED_MOVIES
+  SET_FILTER_GENRE,
+  SET_SEARCH_TEXT,
+  SET_SORTING_TYPE,
 } from '../actions/constants';
 import { State } from '../types';
+import { addNewMovie, mappingEditedMovie } from '../helpers';
 
 export const initialState: State = {
   movies: [],
   searchedMovies: [],
   genre: 'All',
-  sort: 'releaseDate'
+  sortingType: 'release_date',
+  searchText: '',
 };
 
-export const reducer = (state = initialState, action: any) => {
-  switch (action.type) {
+export const reducer = (
+  state = initialState,
+  { type, movies, searchText, sortingType, genre, editedMovies, addedMovie }: any,
+) => {
+  switch (type) {
     case FETCH_MOVIES:
       return {
         ...state,
-        movies: action.payload.data,
-        searchedMovies: action.payload.data
+        movies: movies.data,
+        searchedMovies: movies.data,
       };
-    case FETCH_SEARCHED_MOVIES:
+    case EDIT_MOVIE:
       return {
         ...state,
-        movies: action.payload.data,
-        searchedMovies: action.payload.data
+        movies: mappingEditedMovie(state.movies, editedMovies),
+        searchedMovies: mappingEditedMovie(state.movies, editedMovies),
       };
-    case FETCH_SORTED_MOVIES:
+    case ADD_MOVIE:
       return {
         ...state,
-        movies: action.payload.data,
-        searchedMovies: action.payload.data
+        movies: addNewMovie(state.movies, addedMovie),
+        searchedMovies: addNewMovie(state.movies, addedMovie),
       };
-    case FETCH_FILTERED_MOVIES:
+    case SET_SEARCH_TEXT:
       return {
         ...state,
-        movies: action.payload.data,
-        searchedMovies: action.payload.data
+        searchText,
+      };
+    case SET_SORTING_TYPE:
+      return {
+        ...state,
+        sortingType,
+      };
+    case SET_FILTER_GENRE:
+      return {
+        ...state,
+        genre,
       };
     default:
       return state;

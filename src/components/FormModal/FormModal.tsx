@@ -7,12 +7,15 @@ type Props = {
   visibility: boolean;
   title: string;
   closeHandler: () => void;
-  onInputChange?: (e: React.SyntheticEvent) => void;
+  onFormSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
+  onFormReset?: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 
-const FormModal: FC<Props> = ({ children, visibility = false, title, closeHandler, onInputChange }) => (
+const FormModal: FC<Props> = ({ children, visibility = false, title, closeHandler, onFormSubmit, onFormReset }) => (
   <Modal visibility={visibility} title={title} closeHandler={closeHandler}>
-    <Form onChange={onInputChange}>{children}</Form>
+    <Form onSubmit={onFormSubmit} onReset={onFormReset}>
+      {children}
+    </Form>
   </Modal>
 );
 

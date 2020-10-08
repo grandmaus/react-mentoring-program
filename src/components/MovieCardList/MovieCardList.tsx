@@ -41,11 +41,11 @@ const MovieCardList: FC<Props> = ({ showDetailsHandler, searchedMovies, requestM
 };
 
 const mapStateToProps = (state: any) => ({
-  searchedMovies: state.netflix.searchedMovies
+  searchedMovies: state.netflix.searchedMovies,
 });
 
-const matchDispatchToProps = (dispatch: any) => ({
-  requestMovies: bindActionCreators(fetchMovies, dispatch)
+const mapDispatchToProps = (dispatch: any) => ({
+  requestMovies: bindActionCreators(fetchMovies, dispatch),
 });
 
-export default connect(mapStateToProps, matchDispatchToProps)(memo(MovieCardList));
+export default connect(mapStateToProps, mapDispatchToProps)(memo(MovieCardList));

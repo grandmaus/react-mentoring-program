@@ -5,7 +5,7 @@ export type Movie = {
   tagline: string;
   vote_average: number;
   vote_count: number;
-  release_date: Date;
+  release_date: string;
   poster_path: string;
   overview: string;
   budget: number;
@@ -18,5 +18,6 @@ export type State = {
   movies: ReadonlyArray<Movie>;
   searchedMovies: ReadonlyArray<Movie>;
   genre: string;
-  sort: string;
+  sortingType: string;
+  searchText: string;
 };

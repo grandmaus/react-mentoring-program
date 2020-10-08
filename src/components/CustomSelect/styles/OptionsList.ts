@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 
-export const OptionsList = styled.ul`
+export type StyledProps = {
+  visible: boolean;
+};
+
+export const OptionsList = styled.ul<StyledProps>`
   position: absolute;
+  z-index: 5;
   top: 100%;
   left: 0;
-  display: block;
+  display: ${(props) => (props.visible ? 'block' : 'none')};
   width: 100%;
   margin: 0;
   padding: 15px;

@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const ToggleList = styled.button`
+export type StyledProps = {
+  isError: boolean;
+};
+
+export const ToggleList = styled.button<StyledProps>`
   display: block;
   width: 100%;
   padding: 15px;
@@ -11,6 +15,8 @@ export const ToggleList = styled.button`
   text-align: left;
   color: rgba(255, 255, 255, 0.3);
   background-color: #2e2e2e;
+  outline: 2px solid ${(props) => (props.isError ? '#ff0000' : 'transparent')};
+  outline-offset: -2px;
 
   &:focus {
     color: #ffffff;
