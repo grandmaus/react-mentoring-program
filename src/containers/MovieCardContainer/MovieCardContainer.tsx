@@ -2,7 +2,7 @@ import React, { FC, useCallback, useState, memo } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { deleteMovies } from '../../store/actions/actions';
-import MovieCard from '../../components/movieCard/MovieCard';
+import MovieCard from '../../components/MovieCard/MovieCard';
 import DeleteMovieContainer from '../DeleteMovieContainer/DeleteMovieContainer';
 import { useVisibility } from '../../hooks/useVisibility.hooks';
 import FormEditContainer from '../FormEditContainer/FormEditContainer';
@@ -32,7 +32,7 @@ const MovieCardContainer: FC<Props> = ({
   deleteMovie,
   genres,
   overview,
-  runtime
+  runtime,
 }) => {
   const { visibility, handleToggleVisibility } = useVisibility();
   const [isDelete, setIsDelete] = useState(false);
@@ -41,21 +41,21 @@ const MovieCardContainer: FC<Props> = ({
   const onDeleteMovie = useCallback(
     (e: React.SyntheticEvent) => {
       e.preventDefault();
-      setIsDelete(!isDelete);
+      setIsDelete(true);
       setIsEdit(false);
       handleToggleVisibility();
     },
-    [handleToggleVisibility, isDelete]
+    [handleToggleVisibility],
   );
 
   const onEditMovie = useCallback(
     (e: React.SyntheticEvent) => {
       e.preventDefault();
-      setIsEdit(!isEdit);
+      setIsEdit(true);
       setIsDelete(false);
       handleToggleVisibility();
     },
-    [handleToggleVisibility, isEdit]
+    [handleToggleVisibility],
   );
 
   const onConfirmDelete = useCallback(() => {
@@ -100,8 +100,8 @@ const MovieCardContainer: FC<Props> = ({
   );
 };
 
-const matchDispatchToProps = (dispatch: any) => ({
-  deleteMovie: bindActionCreators(deleteMovies, dispatch)
+const mapDispatchToProps = (dispatch: any) => ({
+  deleteMovie: bindActionCreators(deleteMovies, dispatch),
 });
 
-export default connect(null, matchDispatchToProps)(memo(MovieCardContainer));
+export default connect(null, mapDispatchToProps)(memo(MovieCardContainer));

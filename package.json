@@ -23,8 +23,12 @@
   "homepage": "https://github.com/grandmaus/react-mentoring-program#readme",
   "dependencies": {
     "@babel/polyfill": "^7.11.5",
+    "@types/lodash": "^4.14.161",
     "@types/react-redux": "^7.1.9",
     "@types/styled-components": "^5.1.2",
+    "@types/yup": "^0.29.7",
+    "formik": "^2.1.7",
+    "lodash": "^4.17.20",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-error-boundary": "^2.3.1",
@@ -33,7 +37,8 @@
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "yup": "^0.29.3"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",

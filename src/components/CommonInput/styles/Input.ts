@@ -1,12 +1,18 @@
 import styled from 'styled-components';
 
-export const Input = styled.input`
+export type StyledProps = {
+  isError: boolean;
+};
+
+export const Input = styled.input<StyledProps>`
   display: block;
   width: 100%;
   margin-bottom: 25px;
   padding: 15px;
   box-sizing: border-box;
   border: none;
+  outline: 2px solid ${(props) => (props.isError ? '#ff0000' : 'transparent')};
+  outline-offset: -2px;
   border-radius: 4px;
   font-size: 18px;
   color: #ffffff;

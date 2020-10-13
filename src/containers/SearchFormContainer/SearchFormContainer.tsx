@@ -1,16 +1,18 @@
-import React, { FC, useCallback, useState, memo } from 'react';
+import React, { FC, memo, useCallback, useState } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { fetchSearchedMovies as fetchSearchedMoviesAction, } from '../../store/actions/actions';
+import { fetchMovies as fetchMoviesAction } from '../../store/actions/actions';
 import SearchForm from '../../components/SearchForm/SearchForm';
 
 type Props = {
   action: string;
   method: string;
-  fetchSearchedMovies: (text: string) => void;
+  sort: string;
+  genre: string;
+  fetchMovies: (text: string, sort: string, genre: string) => void;
 };
 
-const SearchFormContainer: FC<Props> = ({ action, method, fetchSearchedMovies }) => {
+const SearchFormContainer: FC<Props> = ({ action, method, fetchMovies, sort, genre }) => {
   const [inputValue, setInputValue] = useState('');
 
   const onInputChange = useCallback((e: React.SyntheticEvent) => {
@@ -23,20 +25,22 @@ const SearchFormContainer: FC<Props> = ({ action, method, fetchSearchedMovies })
     (e: React.SyntheticEvent) => {
       e.preventDefault();
 
-      fetchSearchedMovies(inputValue);
+      fetchMovies(inputValue, sort, genre);
     },
-    [fetchSearchedMovies, inputValue]
+    [fetchMovies, genre, inputValue, sort],
   );
 
   return <SearchForm action={action} method={method} onInputChange={onInputChange} onButtonClick={onButtonClick} />;
 };
 
 const mapStateToProps = (state: any) => ({
-  movies: state.netflix.movies
+  movies: state.netflix.movies,
+  sort: state.netflix.sortingType,
+  genre: state.netflix.genre,
 });
 
-const matchDispatchToProps = (dispatch: any) => ({
-  fetchSearchedMovies: bindActionCreators(fetchSearchedMoviesAction, dispatch)
+const mapDispatchToProps = (dispatch: any) => ({
+  fetchMovies: bindActionCreators(fetchMoviesAction, dispatch),
 });
 
-export default connect(mapStateToProps, matchDispatchToProps)(memo(SearchFormContainer));
+export default connect(mapStateToProps, mapDispatchToProps)(memo(SearchFormContainer));

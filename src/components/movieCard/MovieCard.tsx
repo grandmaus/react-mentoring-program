@@ -1,6 +1,5 @@
 import React, { FC, memo } from 'react';
-// eslint-disable-next-line import/extensions,import/no-unresolved
-import netflix from '@public/image/netflix.jpg';
+import netflix from '../../../public/image/netflix.jpg';
 import { ImageContainer } from './styles/ImageContainer';
 import { Image } from './styles/Image';
 import { ActionWrapper } from './styles/ActionWrapper';
