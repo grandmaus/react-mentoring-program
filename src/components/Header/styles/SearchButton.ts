@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import searchIcon from '../../../../public/image/search.svg';
 
-export const SearchButton = styled.button`
+export const SearchButton = styled(Link)`
   display: block;
   padding: 0;
   border: none;

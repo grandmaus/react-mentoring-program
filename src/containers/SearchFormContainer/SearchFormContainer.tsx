@@ -1,4 +1,5 @@
 import React, { FC, memo, useCallback, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { fetchMovies as fetchMoviesAction } from '../../store/actions/actions';
@@ -14,6 +15,7 @@ type Props = {
 
 const SearchFormContainer: FC<Props> = ({ action, method, fetchMovies, sort, genre }) => {
   const [inputValue, setInputValue] = useState('');
+  const history = useHistory();
 
   const onInputChange = useCallback((e: React.SyntheticEvent) => {
     const { value } = e.target;
@@ -26,8 +28,10 @@ const SearchFormContainer: FC<Props> = ({ action, method, fetchMovies, sort, gen
       e.preventDefault();
 
       fetchMovies(inputValue, sort, genre);
+
+      inputValue ? history.push(`/search/Search%20${inputValue}`) : history.push('');
     },
-    [fetchMovies, genre, inputValue, sort],
+    [fetchMovies, genre, history, inputValue, sort],
   );
 
   return <SearchForm action={action} method={method} onInputChange={onInputChange} onButtonClick={onButtonClick} />;

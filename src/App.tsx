@@ -1,6 +1,5 @@
 import React, { FC, useCallback, useState } from 'react';
 import { connect } from 'react-redux';
-import { GlobalStyle } from './commonStyles/style';
 import MovieCardList from './components/MovieCardList/MovieCardList';
 import Header from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
@@ -11,33 +10,32 @@ import { Movie } from './store/types';
 
 type Props = {
   movies: ReadonlyArray<Movie>;
+  isShowDetails?: boolean;
 };
 
-const App: FC<Props> = ({ movies }) => {
-  const { visibility, addVisibility, handleToggleVisibility } = useVisibility();
+const App: FC<Props> = ({ movies, isShowDetails = false }) => {
+  const { handleToggleVisibility } = useVisibility();
   const [movie, setMovie] = useState<Movie>();
 
   const showDetailsHandler = useCallback(
     (e: React.SyntheticEvent) => {
-      e.preventDefault();
       const movieId = e.target.closest('article').id;
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 
       const movieItem = movies.reduce((result: Movie, item: Movie) => {
         return item.id.toString() === movieId ? item : result;
       }, {} as Movie);
 
       setMovie(movieItem);
-      addVisibility();
     },
-    [movies, addVisibility],
+    [movies],
   );
 
   return (
     <>
-      <GlobalStyle />
       <Header
         title="Find your movie"
-        isShowDetails={visibility}
+        isShowDetails={isShowDetails}
         returnToSearch={handleToggleVisibility}
         movie={movie}
       />

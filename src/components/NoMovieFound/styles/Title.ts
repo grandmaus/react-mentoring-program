@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
-export const Title = styled.h1`
+export const Title = styled.p`
   margin: 0;
   font-size: 48px;
   font-weight: 400;
-  text-transform: uppercase;
   color: #ffffff;
 `;

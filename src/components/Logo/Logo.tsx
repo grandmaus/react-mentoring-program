@@ -6,7 +6,7 @@ type Props = {
 };
 
 const Logo: FC<Props> = ({ url }) => (
-  <LogoLink href={url}>
+  <LogoLink to={url}>
     <span>netflix</span>roulette
   </LogoLink>
 );

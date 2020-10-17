@@ -1,22 +1,20 @@
-import React, { FC, useEffect, memo } from 'react';
-import { bindActionCreators } from 'redux';
+import React, { FC, memo } from 'react';
 import { connect } from 'react-redux';
 import { Item } from './styles/Item';
 import { List } from './styles/List';
-import { fetchMovies } from '../../store/actions/actions';
 import MovieCardContainer from '../../containers/MovieCardContainer/MovieCardContainer';
 import { Movie } from '../../store/types';
+import { NotMovieFound } from '../NoMovieFound/NoMovieFound';
 
 type Props = {
   showDetailsHandler: (e: React.SyntheticEvent) => void;
   searchedMovies: ReadonlyArray<Movie>;
-  requestMovies: () => void;
 };
 
-const MovieCardList: FC<Props> = ({ showDetailsHandler, searchedMovies, requestMovies }) => {
-  useEffect(() => {
-    requestMovies();
-  }, [requestMovies]);
+const MovieCardList: FC<Props> = ({ showDetailsHandler, searchedMovies }) => {
+  if (searchedMovies.length === 0) {
+    return <NotMovieFound />;
+  }
 
   return (
     <List>
@@ -44,8 +42,4 @@ const mapStateToProps = (state: any) => ({
   searchedMovies: state.netflix.searchedMovies,
 });
 
-const mapDispatchToProps = (dispatch: any) => ({
-  requestMovies: bindActionCreators(fetchMovies, dispatch),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(memo(MovieCardList));
+export default connect(mapStateToProps, null)(memo(MovieCardList));

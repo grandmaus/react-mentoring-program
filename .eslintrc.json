@@ -41,7 +41,8 @@
     "@typescript-eslint/ban-ts-comment": "warn",
     "@typescript-eslint/no-var-requires": "warn",
     "array-callback-return": "warn",
-    "react/jsx-props-no-spreading": "off"
+    "react/jsx-props-no-spreading": "off",
+    "no-unused-expressions": "off"
   },
   "settings": {
     "import/extensions": [".js", ".jsx", ".ts", ".tsx"],

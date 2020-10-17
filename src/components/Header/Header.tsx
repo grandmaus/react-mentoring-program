@@ -38,7 +38,7 @@ const Header: FC<Props> = ({ title, isShowDetails, returnToSearch, movie }) => {
         <Row>
           <Logo url="/" />
           {isShowDetails ? (
-            <SearchButton type="button" onClick={returnToSearch}>
+            <SearchButton to="/" onClick={returnToSearch}>
               Search
             </SearchButton>
           ) : (
