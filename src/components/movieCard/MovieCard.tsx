@@ -1,4 +1,5 @@
 import React, { FC, memo } from 'react';
+import { Link } from 'react-router-dom';
 import netflix from '../../../public/image/netflix.jpg';
 import { ImageContainer } from './styles/ImageContainer';
 import { Image } from './styles/Image';
@@ -32,14 +33,14 @@ const MovieCard: FC<Props> = ({
   url,
   showDetailsHandler,
   onDeleteClick,
-  onEditClick
+  onEditClick,
 }) => {
   const { visibility, handleToggleVisibility } = useVisibility();
   const { errorImage, handleErrorImage } = useErrorImage();
 
   return (
     <Card id={`${id}`}>
-      <ImageContainer href={url} target="_blank" onClick={showDetailsHandler}>
+      <ImageContainer to={`/film/${id}/`} onClick={showDetailsHandler}>
         <Image onError={() => handleErrorImage()} src={errorImage ? netflix : image} alt={title} />
       </ImageContainer>
       <ActionButton onClick={handleToggleVisibility} />

@@ -2,9 +2,10 @@ import React, { FC, memo } from 'react';
 import { Formik } from 'formik';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import FormAdd from '../../components/FormAdd/FormAdd';
+import CommonForm from '../../components/CommonForm/CommonForm';
 import { validationSchema } from '../../helpers/validation';
 import { fetchAddMovie as fetchAddMovieAction } from '../../store/actions/actions';
+import { FORM_TYPES } from '../../components/CommonForm/types';
 
 type Props = {
   visibility: boolean;
@@ -36,7 +37,11 @@ const FormAddContainer: FC<Props> = ({ visibility, handleToggleVisibility, fetch
         return (
           <>
             {touched.genres && errors.genres && <div>{errors.genres}</div>}
-            <FormAdd
+            <CommonForm
+              formType={FORM_TYPES.add}
+              resetText="Reset"
+              submitText="Submit"
+              modalTitle="Add movie"
               visibility={visibility}
               closeHandler={handleToggleVisibility}
               handleSubmit={handleSubmit}

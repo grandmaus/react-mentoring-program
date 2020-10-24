@@ -4,6 +4,7 @@ import CommonInput from '../CommonInput/CommonInput';
 import { ButtonsWrapper } from '../Modal/styles/ButtonsWrapper';
 import CommonButton from '../CommonButton/CommonButton';
 import CustomSelect from '../CustomSelect/CustomSelect';
+import { FORM_TYPES, FormType } from './types';
 
 const stylesResetButton = {
   width: '200px',
@@ -21,7 +22,11 @@ const stylesSubmitButton = {
 };
 
 type Props = {
-  id: number;
+  modalTitle: string;
+  formType: FormType;
+  resetText: string;
+  submitText: string;
+  id?: number;
   title: string;
   date: string;
   url: string;
@@ -35,7 +40,11 @@ type Props = {
   handleReset?: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 
-const FormEdit: FC<Props> = ({
+const CommonForm: FC<Props> = ({
+  formType,
+  modalTitle,
+  resetText = 'Reset',
+  submitText = 'Submit',
   inputChangeHandler,
   visibility,
   closeHandler,
@@ -51,12 +60,14 @@ const FormEdit: FC<Props> = ({
 }) => (
   <FormModal
     visibility={visibility}
-    title="Edit movie"
+    title={modalTitle}
     closeHandler={closeHandler}
     onFormSubmit={handleSubmit}
     onFormReset={handleReset}
   >
-    <CommonInput type="text" label="Movie ID" name="id" onInputChange={inputChangeHandler} value={id} disabled />
+    {formType === FORM_TYPES.edit && (
+      <CommonInput type="text" label="Movie ID" name="id" onInputChange={inputChangeHandler} value={id} disabled />
+    )}
     <CommonInput
       type="text"
       label="Title"
@@ -99,10 +110,10 @@ const FormEdit: FC<Props> = ({
       value={runtime}
     />
     <ButtonsWrapper>
-      <CommonButton type="reset" text="Reset" styles={stylesResetButton} />
-      <CommonButton type="submit" text="Save" styles={stylesSubmitButton} />
+      <CommonButton type="reset" text={resetText} styles={stylesResetButton} />
+      <CommonButton type="submit" text={submitText} styles={stylesSubmitButton} />
     </ButtonsWrapper>
   </FormModal>
 );
 
-export default memo(FormEdit);
+export default memo(CommonForm);

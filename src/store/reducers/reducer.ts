@@ -12,7 +12,7 @@ import { addNewMovie, mappingEditedMovie } from '../helpers';
 export const initialState: State = {
   movies: [],
   searchedMovies: [],
-  genre: 'All',
+  genre: '',
   sortingType: 'release_date',
   searchText: '',
 };

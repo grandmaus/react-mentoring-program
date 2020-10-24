@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import mainImage from "../../../../public/image/mainImage.jpg";
+import styled from 'styled-components';
+import mainImage from '../../../../public/image/mainImage.jpg';
 
 type Props = {
   isShowDetails: boolean;
@@ -19,7 +19,7 @@ export const Wrapper = styled.header<Props>`
     position: absolute;
     left: 0;
     top: 0;
-    background-color: ${props => props.isShowDetails ? `rgba(0, 0, 0, 0.9)` : `rgba(0, 0, 0, 0.5)`};
+    background-color: ${(props) => (props.isShowDetails ? `rgba(0, 0, 0, 0.9)` : `rgba(0, 0, 0, 0.5)`)};
     backdrop-filter: blur(5px);
   }
 `;

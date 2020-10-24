@@ -2,9 +2,10 @@ import React, { FC, memo } from 'react';
 import { Formik } from 'formik';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import FormEdit from '../../components/FormEdit/FormEdit';
+import CommonForm from '../../components/CommonForm/CommonForm';
 import { fetchEditMovie as fetchEditMovieAction } from '../../store/actions/actions';
 import { validationSchema } from '../../helpers/validation';
+import { FORM_TYPES } from '../../components/CommonForm/types';
 
 type Props = {
   id: number;
@@ -53,7 +54,11 @@ const FormEditContainer: FC<Props> = ({
         return (
           <>
             {touched.genres && errors.genres && <div>{errors.genres}</div>}
-            <FormEdit
+            <CommonForm
+              formType={FORM_TYPES.edit}
+              resetText="Reset"
+              submitText="Save"
+              modalTitle="Edit movie"
               handleSubmit={handleSubmit}
               handleReset={handleReset}
               visibility={visibility}

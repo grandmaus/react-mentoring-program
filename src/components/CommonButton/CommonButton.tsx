@@ -6,10 +6,12 @@ type Props = {
   text: string;
   styles: StyledProps;
   onButtonClick?: (e: React.SyntheticEvent) => void;
+  element?: any;
+  link?: string;
 };
 
-const CommonButton: FC<Props> = ({ onButtonClick, text, type = 'submit', styles }) => (
-  <Button onClick={onButtonClick} type={type} {...styles}>
+const CommonButton: FC<Props> = ({ onButtonClick, text, type = 'submit', styles, element, link }) => (
+  <Button as={element} to={link} onClick={onButtonClick} type={type} {...styles}>
     {text}
   </Button>
 );

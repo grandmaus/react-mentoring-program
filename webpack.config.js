@@ -7,61 +7,63 @@ const config = {
   output: {
     filename: '[name].bundle.js',
     chunkFilename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dev')
+    path: path.resolve(__dirname, 'dev'),
+    publicPath: '/',
   },
   resolve: {
     modules: [path.resolve(__dirname, './src'), 'node_modules'],
     extensions: ['.tsx', '.js', '.ts'],
     alias: {
-      '@public': path.resolve(__dirname, './public')
-    }
+      '@public': path.resolve(__dirname, './public'),
+    },
   },
   watch: true,
   devServer: {
     contentBase: path.join(__dirname, 'dev'),
     compress: true,
     port: 9000,
-    open: true
+    open: true,
+    historyApiFallback: true,
   },
   optimization: {
     splitChunks: {
-      chunks: 'all'
-    }
+      chunks: 'all',
+    },
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: 'PiewNews',
       template: 'public/index.html',
-      filename: 'index.html'
-    })
+      filename: 'index.html',
+    }),
   ],
   module: {
     rules: [
       {
         enforce: 'pre',
         test: /\.js$/,
-        loader: 'source-map-loader'
+        loader: 'source-map-loader',
       },
       {
         test: /\.(tsx|ts)?$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
-        }
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
         use: [
           {
             loader: 'file-loader',
-            options: { name: 'img/[name].[ext]' }
+            options: { name: 'img/[name].[ext]' },
           },
-          'image-webpack-loader'
-        ]
-      }
-    ]
-  }
+          'image-webpack-loader',
+        ],
+      },
+    ],
+  },
 };
 
 module.exports = (env, argv) => {
