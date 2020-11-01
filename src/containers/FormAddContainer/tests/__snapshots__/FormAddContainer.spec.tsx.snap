@@ -1,0 +1,240 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormAddContainer should render correctly 1`] = `
+Array [
+  <div
+    className="sc-AxirZ igpqqj"
+  >
+    <button
+      className="sc-AxhCb kKvuVx"
+      onClick={[MockFunction]}
+    />
+    <p
+      className="sc-AxhUy eKDZxu"
+    >
+      Add movie
+    </p>
+    <form
+      className="sc-AxjAm StDqN"
+      onReset={[Function]}
+      onSubmit={[Function]}
+    >
+      <div
+        className="sc-Axmtr dXgRrs"
+      >
+        <label
+          className="sc-AxheI jiCVzi"
+          htmlFor="title"
+        >
+          Title
+        </label>
+        <input
+          className="sc-AxgMl cKlSOK"
+          id="title"
+          name="title"
+          onBlur={[Function]}
+          onChange={[Function]}
+          placeholder="Title here"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="sc-Axmtr dXgRrs"
+      >
+        <label
+          className="sc-AxheI jiCVzi"
+          htmlFor="release_date"
+        >
+          Release date
+        </label>
+        <input
+          className="sc-AxgMl cKlSOK"
+          id="release_date"
+          name="release_date"
+          onBlur={[Function]}
+          onChange={[Function]}
+          placeholder="Select date"
+          type="date"
+          value=""
+        />
+      </div>
+      <div
+        className="sc-Axmtr dXgRrs"
+      >
+        <label
+          className="sc-AxheI jiCVzi"
+          htmlFor="poster_path"
+        >
+          Movie URL
+        </label>
+        <input
+          className="sc-AxgMl cKlSOK"
+          id="poster_path"
+          name="poster_path"
+          onBlur={[Function]}
+          onChange={[Function]}
+          placeholder="Movie URL here"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="sc-fznZeY kaBQlm"
+      >
+        <label
+          className="sc-fzplWN jwnwOR"
+        >
+          Genre
+        </label>
+        <button
+          className="sc-fzpans bpfiuc"
+          onClick={[Function]}
+          type="button"
+        >
+          Select genre
+        </button>
+        <ul
+          className="sc-fznyAO fEuoJQ"
+        >
+          <li
+            className="sc-fznKkj ebpiHJ"
+          >
+            <input
+              id="Drama"
+              name="genres"
+              onBlur={[Function]}
+              onChange={[Function]}
+              type="checkbox"
+              value="Drama"
+            />
+            <label
+              className="sc-fzokOt hEcmYN"
+              htmlFor="Drama"
+            >
+              Drama
+            </label>
+          </li>
+          <li
+            className="sc-fznKkj ebpiHJ"
+          >
+            <input
+              id="Romance"
+              name="genres"
+              onBlur={[Function]}
+              onChange={[Function]}
+              type="checkbox"
+              value="Romance"
+            />
+            <label
+              className="sc-fzokOt hEcmYN"
+              htmlFor="Romance"
+            >
+              Romance
+            </label>
+          </li>
+          <li
+            className="sc-fznKkj ebpiHJ"
+          >
+            <input
+              id="Horror"
+              name="genres"
+              onBlur={[Function]}
+              onChange={[Function]}
+              type="checkbox"
+              value="Horror"
+            />
+            <label
+              className="sc-fzokOt hEcmYN"
+              htmlFor="Horror"
+            >
+              Horror
+            </label>
+          </li>
+          <li
+            className="sc-fznKkj ebpiHJ"
+          >
+            <input
+              id="Fantasy"
+              name="genres"
+              onBlur={[Function]}
+              onChange={[Function]}
+              type="checkbox"
+              value="Fantasy"
+            />
+            <label
+              className="sc-fzokOt hEcmYN"
+              htmlFor="Fantasy"
+            >
+              Fantasy
+            </label>
+          </li>
+        </ul>
+      </div>
+      <div
+        className="sc-Axmtr dXgRrs"
+      >
+        <label
+          className="sc-AxheI jiCVzi"
+          htmlFor="overview"
+        >
+          Overview
+        </label>
+        <input
+          className="sc-AxgMl cKlSOK"
+          id="overview"
+          name="overview"
+          onBlur={[Function]}
+          onChange={[Function]}
+          placeholder="Overview here"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="sc-Axmtr dXgRrs"
+      >
+        <label
+          className="sc-AxheI jiCVzi"
+          htmlFor="runtime"
+        >
+          Runtime
+        </label>
+        <input
+          className="sc-AxgMl cKlSOK"
+          id="runtime"
+          name="runtime"
+          onBlur={[Function]}
+          onChange={[Function]}
+          placeholder="Runtime here"
+          type="number"
+          value={0}
+        />
+      </div>
+      <div
+        className="sc-fzozJi eWnHqs"
+      >
+        <button
+          className="sc-fzoLsD dHOvdw"
+          color="#f65251"
+          type="reset"
+          width="200px"
+        >
+          Reset
+        </button>
+        <button
+          className="sc-fzoLsD bjrBUL"
+          color="#ffffff"
+          type="submit"
+          width="200px"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>,
+  <div
+    className="sc-AxiKw eqBQW"
+  />,
+]
+`;

@@ -74,6 +74,5 @@ export const fetchAddMovie = (movie: Movie) => async (dispatch: any) => {
     body: JSON.stringify(movie),
   });
   const data = await response.json();
-
   return dispatch(addMovie(data));
 };

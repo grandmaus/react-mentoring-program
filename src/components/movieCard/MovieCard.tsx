@@ -1,5 +1,4 @@
 import React, { FC, memo } from 'react';
-import { Link } from 'react-router-dom';
 import netflix from '../../../public/image/netflix.jpg';
 import { ImageContainer } from './styles/ImageContainer';
 import { Image } from './styles/Image';
@@ -18,23 +17,12 @@ type Props = {
   image: string;
   genre: string;
   year: string;
-  url: string;
   showDetailsHandler: (e: React.SyntheticEvent) => void;
   onDeleteClick: (e: React.SyntheticEvent) => void;
   onEditClick: (e: React.SyntheticEvent) => void;
 };
 
-const MovieCard: FC<Props> = ({
-  id,
-  title,
-  image,
-  genre,
-  year,
-  url,
-  showDetailsHandler,
-  onDeleteClick,
-  onEditClick,
-}) => {
+const MovieCard: FC<Props> = ({ id, title, image, genre, year, showDetailsHandler, onDeleteClick, onEditClick }) => {
   const { visibility, handleToggleVisibility } = useVisibility();
   const { errorImage, handleErrorImage } = useErrorImage();
 

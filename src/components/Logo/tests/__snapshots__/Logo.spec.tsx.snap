@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Logo should render correctly 1`] = `
+<a
+  className="sc-AxjAm jmUjbM"
+  href="/https://www.page.com"
+  onClick={[Function]}
+>
+  <span>
+    netflix
+  </span>
+  roulette
+</a>
+`;
