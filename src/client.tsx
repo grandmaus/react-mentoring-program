@@ -2,7 +2,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import ReactDOM from 'react-dom';
+import { hydrate } from 'react-dom';
 
 import App from './App';
 import { NotFound } from './components/NotFound/NotFound';
@@ -11,7 +11,7 @@ import { GlobalStyle } from './commonStyles/style';
 
 export const rootElement = document.getElementById('root');
 
-ReactDOM.render(
+hydrate(
   <Provider store={store}>
     <GlobalStyle />
     <ErrorBoundary FallbackComponent={() => <div>Error</div>}>

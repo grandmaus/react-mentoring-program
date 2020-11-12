@@ -91,7 +91,6 @@ const MovieCardContainer: FC<Props> = ({
         image={image}
         genre={genre}
         year={year}
-        url={url}
         showDetailsHandler={showDetailsHandler}
         onDeleteClick={onDeleteMovie}
         onEditClick={onEditMovie}
